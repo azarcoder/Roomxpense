@@ -1,6 +1,6 @@
 # Roomxpense
 
-#### Video Demo:  <URL HERE >
+#### Video Demo:  https://youtu.be/CN_nGb0nV0c?si=2rCqmRCeiz3CFSca
 
 ## Description:
 Roomxpense is a Django-based application developed to simplify the management and calculation of shared expenses within a group, such as roommates sharing rent, utilities, groceries, or other communal costs. The core functionality revolves around distributing any payments made by a member evenly across all members, ensuring that at the end of the billing cycle, the application can accurately determine who owes whom and how much.
