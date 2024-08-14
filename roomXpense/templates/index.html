@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block title %} Home Page {% endblock %}
+{% block body %}
+<div id="box">
+    <div class="head">
+        <h1 class="animated-heading">RoomXpense</h1>
+    </div>
+    <div class="title">
+        <i>Equal divider! Equality provider!</i>
+    </div>
+    <div class="links">
+        {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'signup' %}">Register</a>
+        {% endif %}
+        
+    </div>
+</div>
+<div id="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</div>
+
+<!-- logout view -->
+{% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <p>Welcome, {{ user.username }}!
+        <button type="submit">Logout</button>
+    </form>
+    {% if rooms %}
+    <h3>Your Rooms :</h3>
+    <table border="1">
+        <thead>
+            <th>Room ID</th>
+            <th>Room name</th>
+            <th>Created at</th>
+            <th>View members</th>
+            <th>Add Transaction</th>
+            <th>Calculate Expense</th>
+        </thead>
+        <tbody>
+            {% for i in rooms %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.created_at }}</td>
+                <td><a href="{% url 'view_members' i.id %}">Link</a></td>
+                <td><a href="{% url 'transactions' i.id %}">Link</a></td>
+                <td><a href="{% url 'settle' i.id %}">Link</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <a href="{% url 'newroom' %}">create new room</a>
+    <br>
+    <a href="{% url 'add_person' %}">Add new person to the Room</a>
+{% endif %}
+
+{% endblock %}

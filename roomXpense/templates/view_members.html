@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Members of {{ room.name }}</h1>
+    <table border="1">
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Balance</th>
+            <th>Paid</th>
+            <th>Charges</th>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{ member.name }}</td>
+            
+                <td>{{ member.email }}</td>
+            
+                <td>{{ member.contact }}</td>
+            
+                <td>{{ member.balance }}</td>
+            
+                <td>{{ member.paid }}</td>
+            
+                <td>{{ member.charged }}</td>
+            </tr>
+            {% empty %}
+                <li>No members found.</li>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

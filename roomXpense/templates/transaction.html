@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block title %} Transaction Page {% endblock %}
+{% block body %}
+<h1>Transactions for Room no : {{ roomId }}</h1>
+{% for message in messages %}
+    <li>{{ message }}</li>
+{% endfor %}
+<h1>Room: {{ roomObj.name }}</h1>
+    <h2>Members</h2>
+    <table border="1">
+        <thead>
+            <th>Name</th>
+            <th>Paid</th>
+            <th>Charged</th>
+            <th>Balance</th>
+        </thead>
+        <tbody>
+            {% for member in members %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.paid }}</td>
+                    <td>{{ member.charged }}</td>
+                    <td>{{ member.balance }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<!-- transaction -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Transaction</button>
+</form>
+
+{% endblock %}
